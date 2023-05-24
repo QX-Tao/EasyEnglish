@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">易会英语</string>
+    <string name="title_word">单词</string>
+    <string name="title_review">复习</string>
+    <string name="title_me">我的</string>
+</resources>

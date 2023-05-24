@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Easy English</string>
+    <string name="title_word">Word</string>
+    <string name="title_review">Review</string>
+    <string name="title_me">Me</string>
+    <string name="empty_string" translatable="false" />
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="verify">Verify</string>
+    <string name="set_password">Set password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="bg_image">Background image</string>
+    <string name="more">More</string>
+    <string name="back">Back</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="to_register">Don\'t have an account?</string>
+    <string name="retype_email">Retype email?</string>
+    <string name="third_party_login">Third-party login</string>
+    <string name="welcome">Welcome</string>
+    <string name="signin_to_continue">Sign in to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="display_password">Display password</string>
+    <string name="clear_input">Clear input</string>
+    <string name="input_correct">Input correct</string>
+    <string name="remember_me">Remember me</string>
+    <string name="vercode">Verification code</string>
+    <string name="send_vercode">Send verification code</string>
+    <string name="send">Send</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
+    <string name="wait_time">%1$sS</string>
+    <string name="user_agreement">User agreement</string>
+    <string name="login_with_qq">Login with QQ</string>
+    <string name="login_with_weibo">Login with Weibo</string>
+    <string name="login_with_wechat">Login with Wechat</string>
+    <string name="email_error">Email address incorrect</string>
+    <string name="entered_passwords_differ">Entered passwords differ</string>
+    <string name="password_format_error">Password length should be at least greater than 8 bits, including alphanumeric and symbols, do not use pure Numbers</string>
+    <string name="press_back_again_to_exit">Press back again to exit</string>
+</resources>

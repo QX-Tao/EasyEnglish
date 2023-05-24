@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorThemeBackground">#FF424242</color>
+    <color name="colorAccent">#FFB28600</color>
+    <color name="mainColor">#FF424242</color>
+    <color name="themeMainColor">#FFB28600</color>
+    <color name="themeMainVariantColor">#FF918800</color>
+    <color name="themeMainLightColor">#FF655D3C</color>
+    <color name="themeSecondColor">#FFCCA700</color>
+    <color name="themeSecondVariantColor">#FFB6AB00</color>
+    <color name="firstTextColor">#FFFFFFFF</color>
+    <color name="secondTextColor">#DEFFFFFF</color>
+    <color name="thirdTextColor">#99FFFFFF</color>
+    <color name="titleColor">#FFFFFFFF</color>
+    <color name="rippleColor">#14FFFFFF</color>
+    <color name="lineColor">#FFCFCFCF</color>
+    <color name="firstInsTextColor">#FFCFCFCF</color>
+    <color name="secondInsTextColor">#88CFCFCF</color>
+
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_word">
+
+    <keep_state_fragment
+        android:id="@+id/navigation_word"
+        android:name="com.qxtao.easyenglish.ui.fragment.word.WordFragment"
+        android:label="@string/title_word"
+        tools:layout="@layout/fragment_word" />
+
+    <keep_state_fragment
+        android:id="@+id/navigation_review"
+        android:name="com.qxtao.easyenglish.ui.fragment.review.ReviewFragment"
+        android:label="@string/title_review"
+        tools:layout="@layout/fragment_review" />
+
+    <keep_state_fragment
+        android:id="@+id/navigation_me"
+        android:name="com.qxtao.easyenglish.ui.fragment.me.MeFragment"
+        android:label="@string/title_me"
+        tools:layout="@layout/fragment_me" />
+</navigation>
