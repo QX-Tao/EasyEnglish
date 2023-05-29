@@ -48,7 +48,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     /**
      * 设置底部导航栏
-     *
      * SetUp BottomNavigation
      */
     private fun setUpNavBottom(hostFragment: NavHostFragment?) {
@@ -61,7 +60,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     /**
      * 双击退出应用
-     *
      * Double click to exit
      */
     @Deprecated("Deprecated in Java")

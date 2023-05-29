@@ -1,6 +1,5 @@
 package com.qxtao.easyenglish.ui.view;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
