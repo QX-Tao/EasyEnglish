@@ -188,8 +188,8 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_panel"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_panel"
             android:layout_marginTop="4dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -200,20 +200,25 @@
 
             <CheckBox
                 android:id="@+id/cb_user_agreement"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                app:layout_constraintWidth_max="wrap"
+                app:layout_constraintWidth_percent="0.7"
+                android:singleLine="true"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:text="@string/user_agreement"
                 android:buttonTint="@color/themeMainColor"
-                android:textColor="@color/firstInsTextColor"/>
+                android:textColor="@color/firstInsTextColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_panel"
+            android:layout_below="@id/cl_panel"
             app:cornerRadius="10dp"
             android:backgroundTint="@color/themeMainColor"
             android:textColor="@color/secondTextColor"

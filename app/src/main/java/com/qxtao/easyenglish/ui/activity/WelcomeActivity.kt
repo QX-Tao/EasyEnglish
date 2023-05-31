@@ -9,7 +9,11 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.fragment.app.FragmentActivity
+import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ScreenUtils
+import com.blankj.utilcode.util.SizeUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -66,7 +70,9 @@ class WelcomeActivity: BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBindi
             }
         })
 
-
+        if(ScreenUtils.isLandscape())
+            binding.llLoginPanel.setPadding(SizeUtils.dp2px(5F),
+                BarUtils.getStatusBarHeight(),SizeUtils.dp2px(5F),SizeUtils.dp2px(5F))
 
 
     }

@@ -41,7 +41,8 @@
                 android:hint="@string/email"
                 android:maxLines="1"
                 android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
                 android:id="@+id/iv_clear_email"
@@ -84,7 +85,8 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:autofillHints="password" />
+                android:autofillHints="password"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
                 android:id="@+id/iv_eye_password"
@@ -110,25 +112,32 @@
             <CheckBox
                 android:id="@+id/cb_keep_login"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintWidth_max="wrap"
+                app:layout_constraintWidth_percent="0.45"
+                android:singleLine="true"
+                android:buttonTint="@color/themeMainColor"
                 android:checked="true"
                 android:text="@string/remember_me"
-                android:buttonTint="@color/themeMainColor"
                 android:textColor="@color/firstInsTextColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_forgetPsd"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintWidth_max="wrap"
+                app:layout_constraintWidth_percent="0.45"
+                android:gravity="end"
                 android:layout_marginEnd="5dp"
                 android:text="@string/forgot_your_password"
-                android:textColor="@color/firstInsTextColor"/>
+                android:textColor="@color/firstInsTextColor"
+                android:singleLine="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -148,18 +157,36 @@
             android:insetBottom="0dp"
             android:stateListAnimator="@null"
             android:text="@string/login"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="VisualLintButtonSize" />
 
-        <TextView
-            android:id="@+id/tv_to_register"
-            android:layout_below="@+id/bt_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_to_register"
             android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:text="@string/to_register"
-            android:layout_marginEnd="15dp"
-            android:textColor="@color/firstInsTextColor"/>
+            android:layout_below="@+id/bt_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_to_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_max="wrap"
+                app:layout_constraintWidth_percent="0.7"
+                android:gravity="end"
+                android:text="@string/to_register"
+                android:singleLine="true"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/firstInsTextColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/ll_divider"
@@ -168,7 +195,7 @@
             android:layout_marginEnd="10dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/tv_to_register"
+            android:layout_below="@+id/cl_to_register"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -183,6 +210,7 @@
                 android:layout_marginEnd="12dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:gravity="center"
                 android:textColor="@color/firstInsTextColor"
                 android:text="@string/third_party_login"/>
 
@@ -219,7 +247,8 @@
                 android:layout_height="32dp"
                 android:layout_margin="6dp"
                 android:src="@drawable/ic_wechat"
-                android:contentDescription="@string/login_with_wechat" />
+                android:contentDescription="@string/login_with_wechat"
+                tools:ignore="ImageContrastCheck"/>
 
             <ImageView
                 android:id="@+id/iv_weibo_login"
