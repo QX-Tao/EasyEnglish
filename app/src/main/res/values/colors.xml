@@ -16,6 +16,7 @@
     <color name="lineColor">#FF303030</color>
     <color name="firstInsTextColor">#FF303030</color>
     <color name="secondInsTextColor">#88303030</color>
+    <color name="firstStatusColor">#FF959595</color>
 
     <!--  official  -->
     <color name="purple_200">#FFBB86FC</color>

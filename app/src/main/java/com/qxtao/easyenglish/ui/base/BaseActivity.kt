@@ -48,11 +48,11 @@ abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->V
             isAppearanceLightStatusBars = isNotSystemInDarkMode
             isAppearanceLightNavigationBars = isNotSystemInDarkMode
         }
-        ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null).also {
-            window?.statusBarColor = it
-            window?.navigationBarColor = it
-            window?.navigationBarDividerColor = it
-        }
+        /**
+         * set Status color
+         * 设置状态颜色
+         */
+        setStatusColor(getStatusBarColor(), getNavigationBarColor(), getNavigationBarDividerColor())
         /**
          * Init children
          * 装载子类
@@ -87,6 +87,20 @@ abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->V
      * SplashScreen 开屏动画
      */
     protected open fun isDisplaySplashScreen(): Boolean { return false }
+
+    /**
+     * setStatusColor
+     *
+     * 设置状态颜色
+     */
+    protected fun setStatusColor(statusBarColor: Int, navigationBarColor: Int, navigationBarDividerColor: Int) {
+        window?.statusBarColor = statusBarColor
+        window?.navigationBarColor = navigationBarColor
+        window?.navigationBarDividerColor = navigationBarDividerColor
+    }
+    protected open fun getStatusBarColor(): Int { return ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)}
+    protected open fun getNavigationBarColor(): Int { return ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)}
+    protected open fun getNavigationBarDividerColor(): Int { return ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)}
 
     /**
      * Callback [bindViews] method

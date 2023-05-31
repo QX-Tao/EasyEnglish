@@ -16,5 +16,6 @@
     <color name="lineColor">#FFCFCFCF</color>
     <color name="firstInsTextColor">#FFCFCFCF</color>
     <color name="secondInsTextColor">#88CFCFCF</color>
+    <color name="firstStatusColor">#FF646464</color>
 
 </resources>

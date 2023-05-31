@@ -21,16 +21,10 @@
              animated drawable. One of these is required. -->
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_animate_icon</item>
         <!-- Required for animated icons -->
-        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
         <!-- Set the theme of the Activity that directly follows your splash screen. -->
         <!-- Required -->
-        <item name="postSplashScreenTheme">@style/Theme.EasyEnglish.FullscreenTheme</item>
-    </style>
-
-    <!--Fullscreen Theme-->
-    <style name="Theme.EasyEnglish.FullscreenTheme" parent="Theme.EasyEnglish">
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="postSplashScreenTheme">@style/Theme.EasyEnglish</item>
     </style>
 
 </resources>

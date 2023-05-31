@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ScreenUtils
@@ -77,6 +78,7 @@ class WelcomeActivity: BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBindi
     }
 
 
+    override fun getStatusBarColor(): Int { return ResourcesCompat.getColor(resources, R.color.firstStatusColor, null) }
     override fun isDisplaySplashScreen(): Boolean { return true }
     override fun initViews() {}
     override fun addListener() {}
