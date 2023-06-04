@@ -1,19 +1,17 @@
 package com.qxtao.easyenglish.ui.activity
 
+import android.graphics.Color
 import android.os.Handler
-import android.os.IBinder
 import android.os.Looper
 import android.provider.Settings
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import androidx.core.content.res.ResourcesCompat
+import android.view.WindowManager
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentActivity
-import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.blankj.utilcode.util.SizeUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -40,6 +38,18 @@ class WelcomeActivity: BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBindi
     override fun onCreate() {
         Timer().schedule(500){ isReady = true }
         displaySplash()
+
+        window.setDecorFitsSystemWindows(false)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.navigationBarColor = Color.TRANSPARENT
+        window.statusBarColor = Color.TRANSPARENT
+        if(ScreenUtils.isLandscape()) {
+            val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+            windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+        }
+
         binding.llLoginPanelViewPager.adapter = welcomePagerAdapter
         TabLayoutMediator(binding.llLoginPanelTabLayout, binding.llLoginPanelViewPager){ tab, position ->
             when(position){
@@ -69,16 +79,9 @@ class WelcomeActivity: BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBindi
                 }
             }
         })
-        if(ScreenUtils.isLandscape()) {
-            binding.llLoginPanel.setPadding(
-                SizeUtils.dp2px(5F),
-                BarUtils.getStatusBarHeight(), SizeUtils.dp2px(5F), SizeUtils.dp2px(5F)
-            )
-        }
     }
 
 
-    override fun getStatusBarColor(): Int { return ResourcesCompat.getColor(resources, R.color.firstStatusColor, null) }
     override fun isDisplaySplashScreen(): Boolean { return true }
     override fun initViews() {}
     override fun addListener() {}
@@ -140,38 +143,7 @@ class WelcomeActivity: BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBindi
 
 
 
-    /**
-     * Hidden soft input
-     * 隐藏软键盘
-     */
-    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        if (ev.action == MotionEvent.ACTION_DOWN) {
-            val view = currentFocus
-            if (isHideInput(view, ev)) {
-                hideSoftInput(view!!.windowToken)
-                view.clearFocus()
-            }
-        }
-        return super.dispatchTouchEvent(ev)
-    }
-    private fun isHideInput(v: View?, ev: MotionEvent): Boolean {
-        if (v is EditText) {
-            val l = intArrayOf(0, 0)
-            v.getLocationInWindow(l)
-            val left = l[0]
-            val top = l[1]
-            val bottom = top + v.getHeight()
-            val right = left + v.getWidth()
-            return ev.x <= left || ev.x >= right || ev.y <= top || ev.y >= bottom
-        }
-        return false
-    }
-    private fun hideSoftInput(token: IBinder?) {
-        if (token != null) {
-            val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS)
-        }
-    }
+
 
     /**
      * PagerAdapter Class

@@ -14,7 +14,6 @@
         android:src="@drawable/bg_login_sky"
         android:contentDescription="@string/bg_image"
         app:layout_constraintHeight_max="400dp"
-        app:layout_constraintHeight_percent="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck" />
@@ -25,8 +24,9 @@
         android:scaleType="fitEnd"
         android:src="@drawable/bg_login_telescope"
         android:contentDescription="@string/bg_image"
+        android:layout_marginEnd="16dp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintWidth_percent="0.4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/ll_login_panel"
         tools:ignore="ImageContrastCheck"/>

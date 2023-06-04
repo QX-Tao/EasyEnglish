@@ -17,6 +17,7 @@
         <activity
             android:name=".ui.activity.WelcomeActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.EasyEnglish.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

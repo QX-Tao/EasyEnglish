@@ -52,7 +52,11 @@ abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->V
          * set Status color
          * 设置状态颜色
          */
-        setStatusColor(getStatusBarColor(), getNavigationBarColor(), getNavigationBarDividerColor())
+        setStatusColor(
+            ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null),
+            ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null),
+            ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)
+        )
         /**
          * Init children
          * 装载子类
@@ -94,13 +98,13 @@ abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->V
      * 设置状态颜色
      */
     protected fun setStatusColor(statusBarColor: Int, navigationBarColor: Int, navigationBarDividerColor: Int) {
-        window?.statusBarColor = statusBarColor
-        window?.navigationBarColor = navigationBarColor
-        window?.navigationBarDividerColor = navigationBarDividerColor
+        setStatusBarColor(statusBarColor)
+        setNavigationBarColor(navigationBarColor)
+        setNavigationBarDividerColor(navigationBarDividerColor)
     }
-    protected open fun getStatusBarColor(): Int { return ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)}
-    protected open fun getNavigationBarColor(): Int { return ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)}
-    protected open fun getNavigationBarDividerColor(): Int { return ResourcesCompat.getColor(resources, R.color.colorThemeBackground, null)}
+    protected open fun setStatusBarColor(statusBarColor: Int) { window?.statusBarColor = statusBarColor }
+    protected open fun setNavigationBarColor(navigationBarColor: Int) { window?.navigationBarColor = navigationBarColor }
+    protected open fun setNavigationBarDividerColor(navigationBarDividerColor: Int) { window?.navigationBarDividerColor = navigationBarDividerColor }
 
     /**
      * Callback [bindViews] method
