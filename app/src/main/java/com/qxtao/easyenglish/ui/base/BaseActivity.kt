@@ -1,10 +1,8 @@
-@file:Suppress("MemberVisibilityCanBePrivate", "UNCHECKED_CAST")
+@file:Suppress("MemberVisibilityCanBePrivate")
 
 package com.qxtao.easyenglish.ui.base
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,7 +20,6 @@ import org.greenrobot.eventbus.EventBus
 
 abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->VB) : AppCompatActivity(), View.OnClickListener {
 
-    private val NON_CODE = -1
     protected val binding by lazy{ block(layoutInflater) }
     private lateinit var _context: Context
     protected val mContext get() = _context
@@ -147,7 +144,7 @@ abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->V
      * Toast通知
      */
     protected fun showShortToast(str: String) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+        Toast.makeText(mContext, str, Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -156,111 +153,8 @@ abstract class BaseActivity<VB : ViewBinding>(open val block:(LayoutInflater)->V
      * Toast通知
      */
     protected fun showLongToast(str: String) {
-        Toast.makeText(this, str, Toast.LENGTH_LONG).show()
+        Toast.makeText(mContext, str, Toast.LENGTH_LONG).show()
     }
-
-    /**
-     * startActivity
-     *
-     * @param clazz target Activity
-     */
-    protected open fun go(clazz: Class<out Activity?>?) {
-        goActivity(clazz, null, NON_CODE, false)
-    }
-
-    /**
-     * startActivity with bundle
-     *
-     * @param clazz target Activity
-     */
-    protected open fun go(clazz: Class<out Activity?>?, bundle: Bundle?) {
-        goActivity(clazz, bundle, NON_CODE, false)
-    }
-
-    /**
-     * startActivity then finish this
-     *
-     * @param clazz target Activity
-     */
-    protected open fun goAndFinish(clazz: Class<out Activity?>?) {
-        goActivity(clazz, null, NON_CODE, true)
-    }
-
-    /**
-     * startActivity with bundle and then finish this
-     *
-     * @param clazz  target Activity
-     * @param bundle bundle extra
-     */
-    protected open fun goAndFinish(clazz: Class<out Activity?>?, bundle: Bundle?) {
-        goActivity(clazz, bundle, NON_CODE, true)
-    }
-
-    /**
-     * startActivityForResult
-     */
-    protected open fun goForResult(clazz: Class<out Activity?>?, requestCode: Int) {
-        goActivity(clazz, null, requestCode, false)
-    }
-
-    /**
-     * startActivityForResult with bundle
-     */
-    protected open fun goForResult(
-        clazz: Class<out Activity?>?,
-        bundle: Bundle?,
-        requestCode: Int
-    ) {
-        goActivity(clazz, bundle, requestCode, false)
-    }
-
-    /**
-     * startActivityForResult then finish this
-     */
-    protected open fun goForResultAndFinish(clazz: Class<out Activity?>?, requestCode: Int) {
-        goActivity(clazz, null, requestCode, true)
-    }
-
-    /**
-     * startActivityForResult with bundle and then finish this
-     */
-    protected open fun goForResultAndFinish(
-        clazz: Class<out Activity?>?,
-        bundle: Bundle?,
-        requestCode: Int
-    ) {
-        goActivity(clazz, bundle, requestCode, true)
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param clazz  目标activity
-     * @param bundle 传递参数
-     * @param finish 是否结束当前activity
-     */
-    open fun goActivity(
-        clazz: Class<out Activity?>?,
-        bundle: Bundle?,
-        requestCode: Int,
-        finish: Boolean
-    ) {
-        requireNotNull(clazz) { "you must pass a target activity where to go." }
-        val intent = Intent(this, clazz)
-        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-        if (null != bundle) {
-            intent.putExtras(bundle)
-        }
-        if (requestCode > NON_CODE) {
-            startActivityForResult(intent, requestCode)
-        } else {
-            startActivity(intent)
-        }
-        if (finish) {
-            finish()
-        }
-    }
-
 
     /**
      * Block problems caused by quick clicks

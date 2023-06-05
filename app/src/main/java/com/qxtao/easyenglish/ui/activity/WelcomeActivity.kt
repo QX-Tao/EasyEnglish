@@ -1,5 +1,6 @@
 package com.qxtao.easyenglish.ui.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
@@ -122,7 +123,9 @@ class WelcomeActivity: BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBindi
     }
 
     private fun toMainActivity() {
-        goAndFinish(MainActivity::class.java)
+        val intent = Intent(mContext, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun toRegisterFragment() {

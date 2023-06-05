@@ -1,8 +1,6 @@
 package com.qxtao.easyenglish.ui.base
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +13,6 @@ import org.greenrobot.eventbus.EventBus
 
 abstract class BaseFragment<VB : ViewBinding>(val bindingBlock:(LayoutInflater, ViewGroup?,Boolean) -> VB) : Fragment(), View.OnClickListener {
 
-    private val NON_CODE = -1
     private lateinit var _binding: VB
     private lateinit var _context: Context
     private var _listener: OnFragmentInteractionListener? = null
@@ -111,15 +108,6 @@ abstract class BaseFragment<VB : ViewBinding>(val bindingBlock:(LayoutInflater, 
     protected open fun addListener() {}
 
     /**
-     * startActivity
-     *
-     * @param clazz target Activity
-     */
-    protected open fun go(clazz: Class<out Activity?>?) {
-        goActivity(clazz, null, NON_CODE, false)
-    }
-
-    /**
      * show short toast
      *
      * Toast通知
@@ -136,57 +124,6 @@ abstract class BaseFragment<VB : ViewBinding>(val bindingBlock:(LayoutInflater, 
     protected fun showLongToast(str: String) {
         Toast.makeText(mContext, str, Toast.LENGTH_LONG).show()
     }
-
-    /**
-     * startActivity with bundle
-     *
-     * @param clazz target Activity
-     */
-    protected open fun go(clazz: Class<out Activity?>?, bundle: Bundle?) {
-        goActivity(clazz, bundle, NON_CODE, false)
-    }
-
-    protected open fun goForResult(clazz: Class<out Activity?>?, requestCode: Int) {
-        goActivity(clazz, null, requestCode, false)
-    }
-
-    protected open fun goForResult(
-        clazz: Class<out Activity?>?,
-        bundle: Bundle?,
-        requestCode: Int
-    ) {
-        goActivity(clazz, bundle, requestCode, false)
-    }
-
-    /**
-     * Activity 跳转
-     *
-     * @param clazz  目标activity
-     * @param bundle 传递参数
-     * @param finish 是否结束当前activity
-     */
-    open fun goActivity(
-        clazz: Class<out Activity?>?,
-        bundle: Bundle?,
-        requestCode: Int,
-        finish: Boolean
-    ) {
-        requireNotNull(clazz) { "you must pass a target activity where to go." }
-        val intent = Intent(activity, clazz)
-        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-        if (null != bundle) {
-            intent.putExtras(bundle)
-        }
-        if (requestCode > NON_CODE) {
-            startActivityForResult(intent, requestCode)
-        } else {
-            startActivity(intent)
-        }
-        if (finish) {
-            requireActivity().finish()
-        }
-    }
-
 
     /**
      * Block problems caused by quick clicks
