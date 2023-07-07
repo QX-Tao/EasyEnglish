@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/trans</item>
         <!-- Customize your theme here. -->
+        <item name="android:isLightTheme">true</item>
     </style>
 
     <style name="Theme.EasyEnglish.Starting" parent="Theme.SplashScreen">

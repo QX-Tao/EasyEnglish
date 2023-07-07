@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.qxtao.easyenglish"
-        minSdk 29
+        minSdk 30
         targetSdk 33
         versionCode rootProject.ext.appVersionCode
         versionName rootProject.ext.appVersionName
@@ -48,10 +48,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
     implementation 'com.blankj:utilcodex:1.31.1'
     implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation 'com.github.xuexiangjys:XHttp2:2.0.4'
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
 }

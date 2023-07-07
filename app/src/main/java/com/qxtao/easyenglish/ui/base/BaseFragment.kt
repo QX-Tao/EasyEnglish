@@ -38,7 +38,7 @@ abstract class BaseFragment<VB : ViewBinding>(val bindingBlock:(LayoutInflater, 
     }
 
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(data: String?)
+        fun onFragmentInteraction(vararg data: String?)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

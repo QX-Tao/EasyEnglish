@@ -22,8 +22,4 @@ class WordFragment : BaseFragment<FragmentWordBinding>(FragmentWordBinding::infl
 
     }
 
-    fun onBackPressed(): Boolean {
-
-        return false
-    }
 }

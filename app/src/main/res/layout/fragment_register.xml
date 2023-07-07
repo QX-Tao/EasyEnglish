@@ -205,6 +205,7 @@
                 app:layout_constraintWidth_max="wrap"
                 app:layout_constraintWidth_percent="0.7"
                 android:singleLine="true"
+                android:background="@color/trans"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:text="@string/user_agreement"
                 android:buttonTint="@color/themeMainColor"

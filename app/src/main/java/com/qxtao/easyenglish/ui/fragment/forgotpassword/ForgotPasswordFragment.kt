@@ -236,6 +236,7 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>(Fragm
                     rlEmail.startAnimation(shake)
                 } else {
                     forgotPasswordViewModel.setTimer(60000, 1000)
+                    mListener.onFragmentInteraction("getVerCode",etEmail.text.toString())
                 }
             }
             ivClearEmail -> {
@@ -266,6 +267,7 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>(Fragm
                             rlCheckPassword.startAnimation(shake)
                         } else {
                             mListener.onFragmentInteraction("setNewPassword")
+                            // todo
                         }
                     }
                 }

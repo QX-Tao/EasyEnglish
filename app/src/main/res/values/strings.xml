@@ -12,6 +12,7 @@
     <string name="bg_image">Background image</string>
     <string name="more">More</string>
     <string name="back">Back</string>
+    <string name="confirm">Confirm</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="to_register">Don\'t have an account?</string>
     <string name="retype_email">Retype email?</string>
@@ -31,13 +32,17 @@
     <string name="send">Send</string>
     <string name="agree">Agree</string>
     <string name="disagree">Disagree</string>
-    <string name="wait_time">%1$sS</string>
+    <string name="wait_time" translatable="false">%1$sS</string>
     <string name="user_agreement">User agreement</string>
     <string name="login_with_qq">Login with QQ</string>
     <string name="login_with_weibo">Login with Weibo</string>
     <string name="login_with_wechat">Login with Wechat</string>
     <string name="email_error">Email address incorrect</string>
-    <string name="entered_passwords_differ">Entered passwords differ</string>
-    <string name="password_format_error">Password length should be at least greater than 8 bits, including alphanumeric and symbols, do not use pure Numbers</string>
+    <string name="password_format_error">Password length should be at least greater than 8 bits, including alphanumeric and symbols, do not use pure Numbers.</string>
     <string name="press_back_again_to_exit">Press back again to exit</string>
+    <string name="request_url_exception">Request URL exception</string>
+    <string name="vercode_has_been_sent">The verification code has been sent</string>
+    <string name="password_has_been_updated">Password has been updated</string>
+    <string name="password_has_been_updated_desc">Password has been updated, please use the new password to log in.</string>
+    <string name="entered_passwords_differ">Entered passwords differ</string>
 </resources>

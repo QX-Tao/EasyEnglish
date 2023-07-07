@@ -1,7 +1,8 @@
-package com.qxtao.easyenglish.ui.activity
+package com.qxtao.easyenglish.ui.activity.main
 
-import androidx.fragment.app.Fragment
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -9,18 +10,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxtao.easyenglish.R
 import com.qxtao.easyenglish.databinding.ActivityMainBinding
 import com.qxtao.easyenglish.ui.base.BaseActivity
-import com.qxtao.easyenglish.ui.fragment.word.WordFragment
 import com.qxtao.easyenglish.ui.base.BaseFragment
+import com.qxtao.easyenglish.ui.fragment.word.WordFragment
 import com.qxtao.easyenglish.ui.view.KeepStateNavigator
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate),
     BaseFragment.OnFragmentInteractionListener {
 
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var manager: FragmentManager
-    private lateinit var wordFragment: Fragment
     private lateinit var navView: BottomNavigationView
     private var exitTime: Long = 0
-    private var needGetWordFragment: Boolean = true
 
     override fun onCreate() {
 
@@ -38,7 +38,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         navView = binding.navView
         manager = navHostFragment.childFragmentManager
 
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                val currentFragment = manager.primaryNavigationFragment
+                if(currentFragment is WordFragment){
+                    if (System.currentTimeMillis() - exitTime < 2000) {
+                        exitTime = 0
+                        finish()
+                    } else {
+                        showShortToast(getString(R.string.press_back_again_to_exit))
+                        exitTime = System.currentTimeMillis()
+                    }
+                } else {
+                    navView.selectedItemId = R.id.navigation_word
+                }
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
 
     }
 
@@ -59,41 +77,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     /**
-     * 双击退出应用
-     * Double click to exit
+     * method onFragmentInteraction
+     * @param data String?
      */
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        val currentFragment = manager.primaryNavigationFragment
-        // 当面界面不是mapFragment，则返回mapFragment
-        if (wordFragment != currentFragment) {
-            navView.selectedItemId = R.id.navigation_word
-        } else {
-            if (wordFragment is WordFragment) {
-                if ((wordFragment as WordFragment).onBackPressed()) {
-                    return  // 在Fragment中处理返回逻辑
-                }
-            }
-            if (System.currentTimeMillis() - exitTime < 2000) {
-                exitTime = 0
-                finish()
-            } else {
-                showShortToast(getString(R.string.press_back_again_to_exit))
-                exitTime = System.currentTimeMillis()
-            }
-        }
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        if (needGetWordFragment) {
-            wordFragment = manager.primaryNavigationFragment!!
-            needGetWordFragment = false
-        }
-    }
-
-    override fun onFragmentInteraction(data: String?) {
+    override fun onFragmentInteraction(vararg data: String?) {
 
     }
 

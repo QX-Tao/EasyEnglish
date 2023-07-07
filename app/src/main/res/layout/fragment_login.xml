@@ -114,6 +114,7 @@
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@color/trans"
                 app:layout_constraintWidth_max="wrap"
                 app:layout_constraintWidth_percent="0.45"
                 android:singleLine="true"

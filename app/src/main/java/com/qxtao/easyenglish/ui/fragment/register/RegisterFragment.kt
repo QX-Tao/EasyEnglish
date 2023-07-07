@@ -1,10 +1,12 @@
 package com.qxtao.easyenglish.ui.fragment.register
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
@@ -22,6 +24,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.qxtao.easyenglish.R
 import com.qxtao.easyenglish.databinding.FragmentRegisterBinding
+import com.qxtao.easyenglish.ui.activity.WelcomeActivity
 import com.qxtao.easyenglish.ui.base.BaseFragment
 import java.util.*
 
@@ -128,9 +131,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         ivEyePassword.setOnClickListener(this)
         ivEyeCheckPassword.setOnClickListener(this)
         btRegister.setOnClickListener(this)
-        cbUserAgreement.setOnClickListener(this)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun addListener() {
         etEmail.doOnTextChanged { charSequence, start, _, _ ->
             if (charSequence.toString().contains(" ")) {
@@ -172,6 +175,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             registerViewModel.isCheckPasswordError.value = etCheckPassword.text.toString() != etPassword.text.toString()
             if (charSequence.isNullOrBlank()) registerViewModel.isCheckPasswordError.value = false
         }
+        cbUserAgreement.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_UP -> {
+                    if(!cbUserAgreement.isChecked) showUserAgreementDialog()
+                    else v.performClick()
+                }
+            }
+            true
+        }
     }
 
     override fun onClick(view: View) {
@@ -190,6 +202,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     rlEmail.startAnimation(shake)
                 } else {
                     registerViewModel.setTimer(60000, 1000)
+                    mListener.onFragmentInteraction("getVerCode")
+                    // todo
                 }
             }
             ivEyePassword -> {
@@ -218,14 +232,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                                     rlCheckPassword.startAnimation(shake)
                                 } else {
                                     mListener.onFragmentInteraction("onRegister")
+                                    // todo
                                 }
                             }
                         }
                     }
                 }
-            }
-            cbUserAgreement -> {
-                if (cbUserAgreement.isChecked) showUserAgreementDialog()
             }
         }
     }
@@ -240,7 +252,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         webView.webViewClient = WebViewClient()
         webView.setBackgroundColor(mContext.getColor(R.color.colorThemeBackground))
         webView.loadUrl(
-            when(LanguageUtils.getAppliedLanguage()){
+            when(LanguageUtils.getAppContextLanguage()){
                 Locale.TRADITIONAL_CHINESE -> "file:///android_asset/zh_TW/UserAgreement.html"
                 Locale.SIMPLIFIED_CHINESE -> "file:///android_asset/zh_CN/UserAgreement.html"
                 else -> "file:///android_asset/en/UserAgreement.html"
